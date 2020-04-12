@@ -23,10 +23,15 @@ app.use(express.urlencoded({extended:true}));
 //
 app.set('view engine','ejs');
 
-//
-app.get('/',(request,response)=>{
-    response.render('index');
+
+//test route
+app.get('/hello',(request,response)=>{
+    response.render('pages/index');
 })
+
+
+
+
 
 /////////errors and listen////
 app.get('*',(request,response)=>{
