@@ -36,10 +36,10 @@ app.get('/new', (request, response) => {
 })
 
 
-app.get('/show', (request, response) => {
+app.post('/show', (request, response) => {
     let url;
-    let whatInTheSearch = request.query.search;
-    let radioChoose = request.query.type;
+    let whatInTheSearch = request.body.search;
+    let radioChoose = request.body.type;
     console.log('jasdhjhdadhal', request.query);
     console.log('hdajhdaaaaaaaaaaa', whatInTheSearch);
     if (radioChoose === 'title') {
