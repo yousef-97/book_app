@@ -36,7 +36,7 @@ app.get('/new', (request, response) => {
 })
 
 
-app.post('/show', (request, response) => {
+app.post('/searches', (request, response) => {
     let url;
     let whatInTheSearch = request.body.search;
     let radioChoose = request.body.type;
