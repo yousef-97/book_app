@@ -29,6 +29,11 @@ app.get('/hello',(request,response)=>{
     response.render('pages/index');
 })
 
+//search route
+app.get('/searche',(request,response)=>{
+    response.render('pages/searches/show');
+})
+
 
 
 
