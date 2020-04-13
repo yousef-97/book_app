@@ -6,6 +6,8 @@ require('dotenv').config();
 //dependencies
 const express = require('express');
 const superagent = require('superagent');
+const pg = require('pg');
+
 
 
 //PORT
@@ -24,24 +26,51 @@ app.use(express.urlencoded({ extended: true }));
 //
 app.set('view engine', 'ejs');
 
+const client = new pg.Client(process.env.DATABASE_URL);
+/////////////////calling routs\\\\\\\\\\\\\
+app.get('/', booksInDataBase);
+app.get('/books/:bookId', forDetails);
+app.get('/new', searchForAbook);
+app.post('/books', selectBook);
+app.post('/searches', resultsOfSearch);
+
+
+function booksInDataBase(req, res) {
+    // console.log('hi')
+    let SQL = 'SELECT * FROM books;';
+    // console.log(SQL)
+    return client.query(SQL)
+        .then(results => {
+
+            // console.log(results.rows)
+            res.render('pages/index', { dataBaseBooks: results.rows });
+        })
+}
 
 //test route
-app.get('/hello', (request, response) => {
-    response.render('pages/index');
-})
+function forDetails(request, response) {
+    // console.log(request.params.bookId);
+    let SQL = 'SELECT * FROM books WHERE id=$1;';
+    let Svalue = [request.params.bookId]
+    return client.query(SQL, Svalue)
+        .then((results) => {
+            response.render('./pages/books/show', { details: results.rows[0] });
+
+        })
+}
 
 //search route
-app.get('/new', (request, response) => {
+function searchForAbook(request, response) {
     response.render('pages/searches/new');
-})
+}
 
-
-app.post('/searches', (request, response) => {
+//results of search route
+function resultsOfSearch(request, response) {
     let url;
     let whatInTheSearch = request.body.search;
     let radioChoose = request.body.type;
-    console.log('jasdhjhdadhal', request.query);
-    console.log('hdajhdaaaaaaaaaaa', whatInTheSearch);
+    // console.log('jasdhjhdadhal', request.query);
+    // console.log('hdajhdaaaaaaaaaaa', whatInTheSearch);
     if (radioChoose === 'title') {
         url = `https://www.googleapis.com/books/v1/volumes?q=${whatInTheSearch}`;
     }
@@ -50,25 +79,41 @@ app.post('/searches', (request, response) => {
         console.log('author')
     };
 
-    console.log(url)
+    // console.log(url)
     superagent.get(url)
         .then(data => {
             // console.log(data.body.items[0].volumeInfo.imageLinks.thumbnail)
             let theBooks = data.body.items.map(oneBook => {
-                return new Books(oneBook)
+                let newBook = new Books(oneBook)
+
+
+                return newBook
             })
             // console.log(theBooks);
 
+
             response.render('pages/searches/show', { book: theBooks });
         })
-})
+}
+function selectBook(req, res) {
+    console.log(req.body);
+    let { authors, title, isbn, image, description, bookshelf } = req.body;
+    let SQL = 'INSERT INTO books (author,title,isbn,image_url,description,bookshelf) VALUES ($1,$2,$3,$4,$5,$6);';
+    let saveValues = [authors, title, isbn, image, description, bookshelf];
+    client.query(SQL, saveValues)
+    .then(() => {
+        res.redirect('/')
+    })
+}
 
 
 function Books(data) {
-    this.title = data.volumeInfo.title;
-    this.image = (data.volumeInfo.imageLinks && data.volumeInfo.imageLinks.thumbnail) || 'https://via.placeholder.com/250.png/DDD/000';
     this.authors = (data.volumeInfo.authors && data.volumeInfo.authors[0]) || 'there is no name';
+    this.title = data.volumeInfo.title;
+    this.isbn = (data.volumeInfo.industryIdentifiers && data.volumeInfo.industryIdentifiers[0].identifier) || ' '
+    this.image = (data.volumeInfo.imageLinks && data.volumeInfo.imageLinks.thumbnail) || 'https://via.placeholder.com/250.png/DDD/000';
     this.description = data.volumeInfo.description;
+    this.bookshelf = (data.volumeInfo.categories && data.volumeInfo.categories[0]) || ' ';
 }
 
 
@@ -77,7 +122,9 @@ function Books(data) {
 app.get('*', (request, response) => {
     response.status(404).send('NOT FOUND');
 })
-
-app.listen(PORT, () => {
-    console.log(`listening on PORT ${PORT}`);
-})
+client.connect()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`listening on PORT ${PORT}`);
+        })
+    })
