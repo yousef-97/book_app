@@ -14,10 +14,10 @@
 </head>
 
 <body>
+<header>
+    <%- include ('../../layout/header.ejs')  %> 
 
-    <header>
-        <h1>Search by Title or Author</h1>
-    </header>
+</header>
     <main>
         <% book.forEach(val=>{ %>
         <div>
@@ -25,6 +25,17 @@
             <img src="<%=val.image%>" alt="hi">
             <p><%= val.authors %> </p>
             <p><%= val.description %> </p>
+            <form action="/books" method="POST">
+                <input type="hidden" name="image" value="<%= val.image %> ">
+                <input type="hidden"  name="authors" value="<%= val.authors %> " >
+                <input type="hidden"  name="description" value="<%= val.description %> " >
+                <input type="hidden"  name="title" value="<%= val.title %> " >
+                <input type="hidden"  name="isbn" value="<%= val.isbn %> " >
+                <input type="hidden"  name="bookshelf" value="<%= val.bookshelf %> " >
+
+                <button type="submit"> select this book</button>
+
+            </form>
         </div>
 
         <%})%>

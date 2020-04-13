@@ -12,8 +12,27 @@
 
 </head>
 <body>
-    <header><h1>Hello World</h1></header>
-    <main></main>
+    <header>
+        <%- include ('../layout/header.ejs')  %> 
+        
+    </header>
+    <main>
+        
+        <div><%= dataBaseBooks.length %>  books here </div>
+       
+         
+        <% dataBaseBooks.forEach(val=>{ %>
+            <div>
+               
+                <img src="<%=val.image_url%>" alt="hi">
+                <h3><%= val.title %></h3>
+                <p><%= val.author %> </p>
+                <a href="/books/<%= val.id %>">View details</a>
+            </div>
+    
+            <%})%>
+
+    </main>
     <footer></footer>
 
 </body>
