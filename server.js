@@ -7,7 +7,7 @@ require('dotenv').config();
 const express = require('express');
 const superagent = require('superagent');
 const pg = require('pg');
-
+const methodOverride = require('method-override');
 
 
 //PORT
@@ -17,11 +17,12 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 //
-app.use(express.static('./public'));
 
 //
+app.use(express.static('./public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'))
 
 //
 app.set('view engine', 'ejs');
@@ -33,6 +34,8 @@ app.get('/books/:bookId', forDetails);
 app.get('/new', searchForAbook);
 app.post('/books', selectBook);
 app.post('/searches', resultsOfSearch);
+app.delete('/delete/:deleteId',deleteBook);
+app.put('/update/:updateId',updateTheBook);
 
 
 function booksInDataBase(req, res) {
@@ -105,10 +108,35 @@ function selectBook(req, res) {
         res.redirect('/')
     })
 }
+////////////////delete book\\\\\\\\\\\\\\\\\\
+function deleteBook(req,res){
+    // console.log(req.body.deleteId)//////will not work because you need to pick it from params Not body
+    let SQL = 'DELETE FROM books WHERE id=$1;';
+    let deleteValue = [req.params.deleteId];
+    client.query(SQL,deleteValue)
+    .then(()=>{
+        res.redirect('/')
+    })
+    
+
+}
+///////////////////update book\\\\\\\\\\\\\\\\\\\\\
+function updateTheBook(req,res){
+    let { authors, title, isbn, image, description, bookshelf } = req.body;
+    let SQL = 'UPDATE books SET author=$1,title=$2,isbn=$3,image_url=$4,description=$5,bookshelf=$6 WHERE id=$7;';
+    let saveValues = [authors, title, isbn, image, description, bookshelf ,req.params.updateId];
+    
+    client.query(SQL,saveValues)
+    .then(()=>{
+        res.redirect(`/books/${req.params.updateId}`)
+    })
+}
+
+
 
 
 function Books(data) {
-    this.authors = (data.volumeInfo.authors && data.volumeInfo.authors[0]) || 'there is no name';
+    this.authors = (data.volumeInfo.authors[0] && data.volumeInfo.authors[0]) || 'there is no name';
     this.title = data.volumeInfo.title;
     this.isbn = (data.volumeInfo.industryIdentifiers && data.volumeInfo.industryIdentifiers[0].identifier) || ' '
     this.image = (data.volumeInfo.imageLinks && data.volumeInfo.imageLinks.thumbnail) || 'https://via.placeholder.com/250.png/DDD/000';

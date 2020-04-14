@@ -2,14 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book App</title>
-    <!-- <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/base.css">
-    <link rel="stylesheet" href="style/layout.css">
-    <link rel="stylesheet" href="style/modules.css">
-    <link rel="stylesheet" href="style/icons.css"> -->
+    
+    <%- include ('../../layout/head.ejs')  %> 
 
 </head>
 
@@ -23,10 +17,10 @@
         <form action="/searches" method="POST">
             <input type="text" placeholder="Enter a title or author" name="search"><br />
 
-            <input type="radio" name="type" id="" value="title">
+            <input type="radio" name="type" id="" value="title"class="radio" >
             <label for="title">Title</label><br />
 
-            <input type="radio" value="author" name="type">
+            <input type="radio" value="author" name="type" class="radio">
             <label for="author">Author</label><br />
 
 
