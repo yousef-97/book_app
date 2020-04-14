@@ -1,0 +1,109 @@
+/* @media only screen and (min-width : 320px) and (max-width:480px){ */
+    /*for header*/
+    nav ul li{
+        padding: 5px;
+    }
+    nav ul li a{
+        text-decoration: none;
+        color: white;
+        
+    }
+    #menu div{
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 6px 0;
+        
+    }
+    /* counter in index file*/
+    .counter{
+        
+        text-align: center;
+        color: red;
+        margin: 20px;
+        font-size: 20px;
+        font-weight: 800;
+    }
+    /*the desicription in details file(show) and search results show file*/
+    .index .des{
+        width: 70%;
+        color: black;
+        align-self: center;
+        text-align: justify;
+        background-color:#eeeeee ;
+        padding: 20px;
+        line-height: 1.5;
+    }
+    /*/////////////////////////the forms\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+    .edit{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-around ;
+        margin-top: 20px;
+    }
+    #showform,#del{
+        padding: 20px;
+        color: white;
+        background-color: #4a4a4a;
+        border: none;
+        border-radius: 10px;
+    }
+     /* searches files */
+     #searching{
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         text-align: center;
+     }
+     .add{
+         text-align: center;
+         margin: 30px 0;
+         border: none;
+         border-radius: 8px;
+         /* width: 60%; */
+         padding: 15px;
+ 
+     }
+     
+     input[type="radio"]{
+         background-color: #ddd;
+         border-radius: 10px;
+         border:1px solid black;
+         cursor: pointer;
+         display: inline-block;
+         height: 15px;
+         margin-right: 15px;
+         width: 15px;
+         
+     }
+     input[type="radio"]:checked {
+         background-color: #f66;
+     }
+     .search{
+         border-radius: 8px;
+         padding: 20px;
+         color: white;
+         background-color: black;
+         border: none;
+         font-size: 15px;
+       
+     }
+     #lable1 ,#lable2{
+         width: 60%;
+         padding: 10px 25%;
+         border-radius: 3px;
+         background-color: #d8d8d8;
+         margin-bottom: 20px;
+     }
+     /* for results of searches */
+     #fav{
+         margin-top: 30px;
+         padding: 20px;
+         color: white;
+         background-color: black;
+         width: 60%;
+         border: none;
+         border-radius: 5px;
+     }
+ 
+/* } */

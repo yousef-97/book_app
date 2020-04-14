@@ -1,0 +1,17 @@
+<form action="/delete/<%=details.id %>?_method=delete" method="POST">
+    <button id="del">Delete</button>
+</form>
+
+<button id="showform">Update Data If You Want</button>
+<section class="forupdate">
+    <form action="/update/<%= details.id %>?_method=put" method="POST">
+        <input type="text" name="title" value="<%= details.title %> " placeholder="<%= details.title %> ">
+        <input type="text" name="author" value="<%= details.author %> " placeholder="<%= details.author %> ">
+        <input type="text" name="image" value="<%= details.image_url %> " placeholder="<%= details.image_url %> ">
+        <input type="text" name="description" value="<%= details.description %> " placeholder="<%= details.description%> ">
+        <input type="text" name="isbn" value="<%= details.isbn %> " placeholder="<%= details.isbn %> ">
+        <input type="text" name="bookshelf" value="<%= details.bookshelf %> ">
+
+        <button id="update">Update</button>
+    </form>
+</section>

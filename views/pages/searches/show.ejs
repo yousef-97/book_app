@@ -2,47 +2,47 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book App</title>
-    <!-- <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/base.css">
-    <link rel="stylesheet" href="style/layout.css">
-    <link rel="stylesheet" href="style/modules.css">
-    <link rel="stylesheet" href="style/icons.css"> -->
+    <%- include ('../../layout/head.ejs')  %> 
+
 
 </head>
 
 <body>
-<header>
-    <%- include ('../../layout/header.ejs')  %> 
+    <header>
+        <%- include ('../../layout/header.ejs')  %>
 
-</header>
+    </header>
     <main>
-        <% book.forEach(val=>{ %>
-        <div>
-            <h3><%= val.title %></h3>
+        <% book.forEach((val,ind)=>{ %>
+        <div class="index">
             <img src="<%=val.image%>" alt="hi">
+            <h3><%= val.title %></h3>
             <p><%= val.authors %> </p>
-            <p><%= val.description %> </p>
-            <form action="/books" method="POST">
-                <input type="hidden" name="image" value="<%= val.image %> ">
-                <input type="hidden"  name="authors" value="<%= val.authors %> " >
-                <input type="hidden"  name="description" value="<%= val.description %> " >
-                <input type="hidden"  name="title" value="<%= val.title %> " >
-                <input type="hidden"  name="isbn" value="<%= val.isbn %> " >
-                <input type="hidden"  name="bookshelf" value="<%= val.bookshelf %> " >
+            <p class="des"><%= val.description %> </p>
 
-                <button type="submit"> select this book</button>
+            <!-- <button class="toSelect">select this book</button> -->
+            <div class="selectform">
+                <form action="/books" method="POST">
+                    <input type="hidden" name="image" value="<%= val.image %> ">
+                    <input type="hidden" name="authors" value="<%= val.authors %> ">
+                    <input type="hidden" name="description" value="<%= val.description %> ">
+                    <input type="hidden" name="title" value="<%= val.title %> ">
+                    <input type="hidden" name="isbn" value="<%= val.isbn %> ">
+                    <label for="bookshelf">bookshelf</label>
+                    <input type="text" name="bookshelf" value="<%= val.bookshelf %> "><br />
 
-            </form>
+                    <button type="submit" id="fav">Select this Book </button>
+
+                </form>
+            </div>
         </div>
 
         <%})%>
     </main>
 
     <footer></footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>

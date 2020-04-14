@@ -1,0 +1,64 @@
+/* @media only screen and (min-width : 320px) and (max-width:480px){ */
+    header{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background-color: black;
+        color: white;
+        padding: 10px;
+        height: 50px;
+        text-align: center;
+    }
+   
+    .nav{
+        display: none; 
+        text-align: center;
+        position: absolute;
+        top:100%;
+        left: 0;
+        padding: 0 30%;
+        background-color:rgba(31, 31, 31,.9) ;
+        
+    }
+    /*for Searches show ,index ,view,books show files*/
+    .index{
+        display: flex;
+        flex-direction: column;
+        background-color:#d8d8d8 ;
+        text-align: center;
+        margin: auto;
+        margin-top: 40px;
+        padding-bottom: 30px;
+        width: 85%;
+        
+    }
+    .index img{
+        margin: 25px 0;
+        width: 50%;
+        height: 90%;
+        align-self:center;
+    }
+    .index h3{
+        margin:10px;
+        font-weight: 800;
+        font-size: 15px;
+        color: white;
+
+    }
+    .index p{
+        margin:10px;
+        font-style: italic;
+        font-weight: 800;
+        font-size: 15px;
+        color: gray;
+    }
+    .index a{
+        padding: 25px;
+        background-color:black ;
+        color: white;
+        width: 30%;
+        align-self:center;
+        margin-top: 70px;
+    }
+/* } */
