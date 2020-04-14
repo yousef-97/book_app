@@ -1,9 +1,9 @@
 <form action="/delete/<%=details.id %>?_method=delete" method="POST">
-    <button>Delete</button>
+    <button id="del">Delete</button>
 </form>
 
-<button id="showform">Update</button>
-<section>
+<button id="showform">Update Data If You Want</button>
+<section class="forupdate">
     <form action="/update/<%= details.id %>?_method=put" method="POST">
         <input type="text" name="title" value="<%= details.title %> ">
         <input type="text" name="author" value="<%= details.author %> ">

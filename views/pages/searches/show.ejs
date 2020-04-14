@@ -14,11 +14,11 @@
     </header>
     <main>
         <% book.forEach((val,ind)=>{ %>
-        <div>
-            <h3><%= val.title %></h3>
+        <div class="index">
             <img src="<%=val.image%>" alt="hi">
+            <h3><%= val.title %></h3>
             <p><%= val.authors %> </p>
-            <p><%= val.description %> </p>
+            <p class="des"><%= val.description %> </p>
 
             <!-- <button class="toSelect">select this book</button> -->
             <div class="selectform">
@@ -31,7 +31,7 @@
                     <label for="bookshelf">bookshelf</label>
                     <input type="text" name="bookshelf" value="<%= val.bookshelf %> "><br />
 
-                    <button type="submit" id="add">add this book </button>
+                    <button type="submit" id="fav">Select this Book </button>
 
                 </form>
             </div>

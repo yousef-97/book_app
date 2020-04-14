@@ -1,6 +1,10 @@
-// $(document).ready(function(){
-//     $('.selectform').hide();
-//     $('.toSelect').on('click',()=>{
-//         $('.selectform').toggle();
-//     })
-// })
+$(document).ready(function(){
+    $('.forupdate').hide();
+    $('#showform').on('click',()=>{
+        $('.forupdate').toggle();
+        
+    })
+    $('#menu div').on('click',()=>{
+        $('.nav').toggle();
+    })
+})

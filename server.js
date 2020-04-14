@@ -139,7 +139,7 @@ function Books(data) {
     this.authors = (data.volumeInfo.authors[0] && data.volumeInfo.authors[0]) || 'there is no name';
     this.title = data.volumeInfo.title;
     this.isbn = (data.volumeInfo.industryIdentifiers && data.volumeInfo.industryIdentifiers[0].identifier) || ' '
-    this.image = (data.volumeInfo.imageLinks && data.volumeInfo.imageLinks.thumbnail) || 'https://via.placeholder.com/250.png/DDD/000';
+    this.image = (data.volumeInfo.imageLinks && data.volumeInfo.imageLinks.thumbnail) || 'https://via.placeholder.com/250.png/fdff00/000';
     this.description = data.volumeInfo.description;
     this.bookshelf = (data.volumeInfo.categories && data.volumeInfo.categories[0]) || ' ';
 }

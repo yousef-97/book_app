@@ -14,12 +14,12 @@
     </header>
     <main>
 
-        <div><%= dataBaseBooks.length %> books here </div>
 
+
+        <div class="counter"><%= dataBaseBooks.length %> books here </div>
 
         <% dataBaseBooks.forEach(val=>{ %>
-        <div>
-
+        <div class="index ">
             <img src="<%=val.image_url%>" alt="hi">
             <h3><%= val.title %></h3>
             <p><%= val.author %> </p>

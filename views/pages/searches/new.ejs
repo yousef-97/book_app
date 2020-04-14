@@ -14,22 +14,28 @@
     </header>
 
     <main>
-        <form action="/searches" method="POST">
-            <input type="text" placeholder="Enter a title or author" name="search"><br />
+        <form action="/searches" method="POST" id="searching">
+            <input type="text" placeholder="Enter a title or author" name="search" class="add"><br />
 
-            <input type="radio" name="type" id="" value="title"class="radio" >
-            <label for="title">Title</label><br />
+            <label for="title" id="lable1">
+                <input type="radio" name="type" id="" value="title"class="radio" >
+                Title
+            </label><br />
 
-            <input type="radio" value="author" name="type" class="radio">
-            <label for="author">Author</label><br />
+            <label for="author" id="lable2">
+                <input type="radio" value="author" name="type" class="radio">
+                Author
+                
+            </label><br />
 
 
-            <button type="submit">Search the Google Books API</button>
+            <button type="submit" class="search">Search the Google Books API</button>
         </form>
     </main>
 
     <footer></footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>
