@@ -1,6 +1,6 @@
-@media only screen and (min-width : 320px) and (max-width:480px){
+/* @media only screen and (min-width : 320px) and (max-width:480px){ */
     body{
-        width: 100%;
+        width: 480px;
         background-color: #9b9b9b;
         margin: auto;
         box-sizing: border-box;
@@ -9,4 +9,4 @@
     a{
         text-decoration: none;
     }
-}
+/* } */

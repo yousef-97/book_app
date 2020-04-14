@@ -1,4 +1,4 @@
-@media only screen and (min-width : 320px) and (max-width:480px){
+/* @media only screen and (min-width : 320px) and (max-width:480px){ */
     header{
         position: relative;
         display: flex;
@@ -48,7 +48,7 @@
     }
     .index p{
         margin:10px;
-        
+        font-style: italic;
         font-weight: 800;
         font-size: 15px;
         color: gray;
@@ -61,4 +61,4 @@
         align-self:center;
         margin-top: 70px;
     }
-}
+/* } */

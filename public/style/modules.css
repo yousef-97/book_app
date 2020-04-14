@@ -1,4 +1,4 @@
-@media only screen and (min-width : 320px) and (max-width:480px){
+/* @media only screen and (min-width : 320px) and (max-width:480px){ */
     /*for header*/
     nav ul li{
         padding: 5px;
@@ -106,4 +106,4 @@
          border-radius: 5px;
      }
  
-}
+/* } */

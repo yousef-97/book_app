@@ -4,7 +4,7 @@ $(document).ready(function(){
         $('.forupdate').toggle();
         
     })
-    $('#menu div').on('click',()=>{
+    $('#menu').on('click',()=>{
         $('.nav').toggle();
     })
 })
